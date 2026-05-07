@@ -1,0 +1,43 @@
+﻿@using MudBlazor
+@using Quick.Fields
+
+<MudPaper Elevation="0" Class="@ControlUtils.GetCommonClass(Field)">
+    @if (Field.Input_PrependText != null || Field.Input_PrependChildren != null || Field.Input_AppendText != null ||
+    Field.Input_AppendChildren != null)
+    {
+        @if (Field.Input_PrependText != null)
+        {
+            <MudText>@Field.Input_PrependText</MudText>
+        }
+        @if (Field.Input_PrependChildren != null)
+        {
+            @foreach (var field in Field.Input_PrependChildren)
+            {
+                <Control Field="field" />
+            }
+        }
+        @ChildContent
+        @if (Field.Input_AppendText != null)
+        {
+            <MudText>@Field.Input_AppendText</MudText>
+        }
+        @if (Field.Input_AppendChildren != null)
+        {
+            @foreach (var field in Field.Input_AppendChildren)
+            {
+                <Control Field="field" />
+            }
+        }
+    }
+    else
+    {
+        @ChildContent
+    }
+</MudPaper>
+
+@code {
+    [Parameter]
+    public FieldForGet Field { get; set; }
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}

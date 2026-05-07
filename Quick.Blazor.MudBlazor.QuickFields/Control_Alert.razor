@@ -1,0 +1,35 @@
+﻿@using MudBlazor
+@using Quick.Fields
+@using global::MudBlazor
+
+<MudAlert Severity="@ControlUtils.GetSeverity(Field)">
+    @if (!string.IsNullOrEmpty(Field.Name))
+    {
+        @if (Field.Input_IsLarge.HasValue && Field.Input_IsLarge.Value)
+        {
+            <MudText Typo="Typo.h2">@Field.Name</MudText>
+        }
+        else if (Field.Input_IsSmall.HasValue && Field.Input_IsSmall.Value)
+        {
+            <MudText Typo="Typo.h5">@Field.Name</MudText>
+        }
+        else
+        {
+            <MudText Typo="Typo.h4">@Field.Name</MudText>
+        }
+    }
+    @Field.Description
+    @if (Field.Children != null)
+    {
+        @foreach (var child in Field.Children)
+        {
+            <Control Field="@child" />
+        }
+    }
+</MudAlert>
+
+@code
+{
+    [Parameter]
+    public FieldForGet Field { get; set; }
+}

@@ -1,0 +1,97 @@
+using System.ComponentModel;
+using Microsoft.AspNetCore.Components;
+using MudBlazor;
+using Quick.Fields;
+using FieldType = Quick.Fields.FieldType;
+
+namespace Quick.Blazor.MudBlazor.QuickFields;
+
+public partial class Controls : ComponentBase
+{
+    [Inject]
+    public IDialogService DialogService { get; set; }
+
+    public FieldForGet[] Fields { get; private set; }
+
+    [Parameter]
+    public Action<FieldForGet, FieldForGet[]> OnFieldChangedAction { get; set; }
+
+    public void SetFields(FieldForGet[] fields)
+    {
+        travelFields(fields, field =>
+        {
+            if (field.PostOnChanged.HasValue && field.PostOnChanged.Value)
+                field.PropertyChanged -= OnFieldValueChanged;
+        });
+        Fields = fields;
+        travelFields(Fields, field =>
+        {
+            switch (field.Type)
+            {
+                case FieldType.Toast:
+                case FieldType.MessageBox:
+                    Action okAction = null;
+                    Action cancelAction = null;
+                    var usePreTag = field.MessageBox_UsePreTag.HasValue && field.MessageBox_UsePreTag.Value;
+                    if (field.PostOnChanged.HasValue && field.PostOnChanged.Value)
+                    {
+                        var canCancel = field.MessageBox_CanCancel.HasValue && field.MessageBox_CanCancel.Value;
+                        okAction = () => field.Value = FieldForGet.MESSAGEBOX_VALUE_OK;
+                        if (canCancel)
+                            cancelAction = () => field.Value = FieldForGet.MESSAGEBOX_VALUE_CANCEL;
+                    }
+                    DialogService.ShowMessageBoxAsync(field.Name, field.Description)
+                        .ContinueWith(t =>
+                        {
+                            if (t.IsCanceled)
+                                return;
+                            var ret = t.Result;
+                            if (ret == null || !ret.Value)
+                                cancelAction?.Invoke();
+                            else
+                                okAction?.Invoke();
+                        });
+                    break;
+                case FieldType.Button:
+                case FieldType.Upload:
+                    field.PostOnChanged = true;
+                    break;
+            }
+            if (field.PostOnChanged.HasValue && field.PostOnChanged.Value)
+                field.PropertyChanged += OnFieldValueChanged;
+        });
+        InvokeAsync(StateHasChanged);
+    }
+
+    private void OnFieldValueChanged(object sender, PropertyChangedEventArgs e)
+    {
+        var field = (FieldForGet)sender;
+        OnFieldChanged(field);
+    }
+
+    private void OnFieldChanged(FieldForGet field)
+    {
+        OnFieldChangedAction?.Invoke(field, Fields);
+    }
+
+    public void Dispose()
+    {
+        if (Fields != null)
+            foreach (var field in Fields)
+                if (field.PostOnChanged.HasValue && field.PostOnChanged.Value)
+                    field.PropertyChanged -= OnFieldValueChanged;
+    }
+
+    private void travelFields(FieldForGet[] fields, Action<FieldForGet> action)
+    {
+        if (fields == null)
+            return;
+        foreach (var field in fields)
+        {
+            action.Invoke(field);
+            travelFields(field.Input_PrependChildren, action);
+            travelFields(field.Children, action);
+            travelFields(field.Input_AppendChildren, action);
+        }
+    }
+}

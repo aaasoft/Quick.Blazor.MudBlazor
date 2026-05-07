@@ -1,0 +1,17 @@
+﻿@using MudBlazor
+@using Quick.Fields
+@using global::MudBlazor
+
+<InputBase Field="@Field">
+    <MudTextField @bind-Value="Field.Value" Label="@Field.Name" HelperText="@Field.Description"
+                  ReadOnly="@ControlUtils.GetInputReadOnly(Field)" Variant="Variant.Outlined" Lines="@GetLines()"
+                  Required="@(Field.Input_AllowBlank==null?false:Field.Input_AllowBlank.Value)" />
+</InputBase>
+
+@code
+{
+    [Parameter]
+    public FieldForGet Field { get; set; }
+
+    private int GetLines() => Field.InputTextArea_Rows == null ? 15 : Field.InputTextArea_Rows.Value;
+}

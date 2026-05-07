@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RepositoryUrl>https://cnb.cool/scbeta/Quick.Blazor.MudBlazor</RepositoryUrl>
+		<PackageProjectUrl>https://cnb.cool/scbeta/Quick.Blazor.MudBlazor</PackageProjectUrl>
+		<Version>2026.1.507</Version>
+		<Description>Quick.Blazor.MudBlazor.QuickFields is a component library for Quick.Fields built on top of Blazor and MudBlazor.</Description>
+  </PropertyGroup>
+  
+  <ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Quick.Fields" Version="2026.3.321" />
+		<PackageReference Include="MudBlazor" Version="9.4.0" />
+  </ItemGroup>
+
+</Project>

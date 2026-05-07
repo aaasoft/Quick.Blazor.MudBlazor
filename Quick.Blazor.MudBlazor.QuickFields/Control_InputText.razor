@@ -1,0 +1,16 @@
+﻿@using MudBlazor
+@using Quick.Fields
+@using global::MudBlazor
+
+<InputBase Field="@Field">
+    <MudTextField @bind-Value="Field.Value" Label="@Field.Name" HelperText="@Field.Description"
+        ReadOnly="@ControlUtils.GetInputReadOnly(Field)"
+        Variant="Variant.Outlined"
+        Required="@(Field.Input_AllowBlank==null?false:Field.Input_AllowBlank.Value)" />
+</InputBase>
+
+@code
+{
+    [Parameter]
+    public FieldForGet Field { get; set; }
+}

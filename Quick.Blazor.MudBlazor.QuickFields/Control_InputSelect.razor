@@ -1,0 +1,23 @@
+﻿@using MudBlazor
+@using Quick.Fields
+@using global::MudBlazor
+
+<InputBase Field="@Field">
+    <MudSelect @bind-Value="Field.Value" Label="@Field.Name" HelperText="@Field.Description"
+               ReadOnly="@ControlUtils.GetInputReadOnly(Field)" Variant="Variant.Outlined"
+               Required="@(Field.Input_AllowBlank==null?false:Field.Input_AllowBlank.Value)">
+        @if (Field.InputSelect_Options != null)
+        {
+            @foreach (var item in Field.InputSelect_Options)
+            {
+                <MudSelectItem Value="@item.Key">@item.Value</MudSelectItem>
+            }
+        }
+    </MudSelect>
+</InputBase>
+
+@code
+{
+    [Parameter]
+    public FieldForGet Field { get; set; }
+}

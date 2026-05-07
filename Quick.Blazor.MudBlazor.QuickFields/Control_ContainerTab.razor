@@ -1,0 +1,23 @@
+﻿@using MudBlazor
+@using Quick.Fields
+
+<MudTabs Rounded="true" ApplyEffectsToContainer="true" TabPanelsClass="pa-4">
+    @if (Field.Children != null)
+    {
+        @foreach (var field in Field.Children)
+        {
+            <MudTabPanel Text="@field.Name">
+                @foreach (var child in field.Children)
+                {
+                    <Control Field="child"></Control>
+                }
+            </MudTabPanel>
+        }
+    }
+</MudTabs>
+
+@code
+{
+    [Parameter]
+    public FieldForGet Field { get; set; }
+}

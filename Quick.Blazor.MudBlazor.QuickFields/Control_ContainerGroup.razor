@@ -1,0 +1,25 @@
+﻿@using MudBlazor
+@using Quick.Fields
+@using global::MudBlazor
+
+<MudCard>
+    @if (!string.IsNullOrEmpty(Field.Name))
+    {
+        <MudCardHeader>
+            <CardHeaderContent>
+                <MudText Typo="Typo.h6">@Field.Name</MudText>
+            </CardHeaderContent>
+        </MudCardHeader>
+    }
+    <MudCardContent>
+        @foreach (var child in Field.Children)
+        {
+            <Control Field="child"></Control>
+        }
+    </MudCardContent>
+</MudCard>
+@code
+{
+    [Parameter]
+    public FieldForGet Field { get; set; }
+}
