@@ -2,8 +2,8 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RepositoryUrl>https://cnb.cool/scbeta/Quick.Blazor.MudBlazor</RepositoryUrl>
-		<PackageProjectUrl>https://cnb.cool/scbeta/Quick.Blazor.MudBlazor</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/aaasoft/Quick.Blazor.MudBlazor</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/aaasoft/Quick.Blazor.MudBlazor</PackageProjectUrl>
 		<Version>2026.1.507</Version>
 		<Description>Quick.Blazor.MudBlazor.QuickFields is a component library for Quick.Fields built on top of Blazor and MudBlazor.</Description>
   </PropertyGroup>
