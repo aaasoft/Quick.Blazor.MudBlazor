@@ -1,0 +1,62 @@
+﻿@using MudBlazor
+@using Quick.Fields
+@using global::MudBlazor
+
+@if (Field.Input_Disabled.HasValue && Field.Input_Disabled.Value)
+{
+    <MudButton Variant="GetVariant()" Color="GetColor()" Size="GetSize()" Class="@ControlUtils.GetCommonClass(Field)" Disabled>@Field.Name</MudButton>
+}
+else
+{
+    <MudButton Variant="GetVariant()" Color="GetColor()" Size="GetSize()" Class="@ControlUtils.GetCommonClass(Field)" OnClick="OnClick">@Field.Name</MudButton>
+}
+
+@code
+{
+    [Parameter]
+    public FieldForGet Field { get; set; }
+
+    public Variant GetVariant()
+    {
+        if (Field.InputButton_IsOutline.HasValue && Field.InputButton_IsOutline.Value)
+            return Variant.Outlined;
+        return Variant.Filled;
+    }
+    public Size GetSize()
+    {
+        if(Field.Input_IsSmall.HasValue && Field.Input_IsSmall.Value)
+            return Size.Small;
+        if(Field.Input_IsLarge.HasValue && Field.Input_IsLarge.Value)
+            return Size.Large;
+        return Size.Medium;
+    }
+    public Color GetColor()
+    {
+        switch (Field.Theme)
+        {
+            case FieldTheme.Primary:
+                return Color.Primary;
+            case FieldTheme.Secondary:
+                return Color.Secondary;
+            case FieldTheme.Success:
+                return Color.Success;
+            case FieldTheme.Danger:
+                return Color.Error;
+            case FieldTheme.Warning:
+                return Color.Warning;
+            case FieldTheme.Info:
+                return Color.Info;
+            case FieldTheme.Dark:
+                return Color.Dark;
+            case FieldTheme.Light:
+                return Color.Default;
+            default:
+                return Color.Default;
+        }
+    }
+
+    public void OnClick()
+    {
+        Field.Value = Field.Value;
+    }
+}

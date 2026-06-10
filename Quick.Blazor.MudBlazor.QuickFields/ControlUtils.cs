@@ -49,7 +49,7 @@ internal static class ControlUtils
         appendCommonClass(sb, field);
         return sb.ToString();
     }
-    
+
     public static bool GetInputReadOnly(FieldForGet field)
     {
         if (field.Input_ReadOnly == null)
