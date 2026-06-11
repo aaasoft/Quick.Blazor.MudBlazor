@@ -4,7 +4,7 @@
 
 <InputBase Field="@Field">
     <MudTextField @bind-Value="Field.Value" Label="@Field.Name" HelperText="@Field.Description"
-                  ReadOnly="@ControlUtils.GetInputReadOnly(Field)" Variant="Variant.Outlined" Lines="@GetLines()"
+                  ReadOnly="@ControlUtils.GetInputReadOnly(Field)" Variant="ControlUtils.GetVariant(Field)" Lines="@GetLines()"
                   Required="@(Field.Input_AllowBlank==null?false:Field.Input_AllowBlank.Value)" />
 </InputBase>
 

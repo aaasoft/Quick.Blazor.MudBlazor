@@ -3,48 +3,16 @@
 @using global::MudBlazor
 
 <InputBase Field="@Field">
-    <MudSwitch @bind-Value="Value" Label="@Field.Name" Size="GetSize()" Color="GetColor()"
-           Required="@(Field.Input_AllowBlank==null?false:Field.Input_AllowBlank.Value)"
-           ReadOnly="@ControlUtils.GetInputReadOnly(Field)" />
+    <MudSwitch @bind-Value="Value" Label="@Field.Name" Size="ControlUtils.GetSize(Field)"
+               Color="ControlUtils.GetColor(Field)"
+               Required="@(Field.Input_AllowBlank==null?false:Field.Input_AllowBlank.Value)"
+               ReadOnly="@ControlUtils.GetInputReadOnly(Field)" />
 </InputBase>
 
 @code
 {
     [Parameter]
     public FieldForGet Field { get; set; }
-
-    public Size GetSize()
-    {
-        if(Field.Input_IsSmall.HasValue && Field.Input_IsSmall.Value)
-            return Size.Small;
-        if(Field.Input_IsLarge.HasValue && Field.Input_IsLarge.Value)
-            return Size.Large;
-        return Size.Medium;
-    }
-    public Color GetColor()
-    {
-        switch (Field.Theme)
-        {
-            case FieldTheme.Primary:
-                return Color.Primary;
-            case FieldTheme.Secondary:
-                return Color.Secondary;
-            case FieldTheme.Success:
-                return Color.Success;
-            case FieldTheme.Danger:
-                return Color.Error;
-            case FieldTheme.Warning:
-                return Color.Warning;
-            case FieldTheme.Info:
-                return Color.Info;
-            case FieldTheme.Dark:
-                return Color.Dark;
-            case FieldTheme.Light:
-                return Color.Default;
-            default:
-                return Color.Default;
-        }
-    }
 
     private bool Value
     {

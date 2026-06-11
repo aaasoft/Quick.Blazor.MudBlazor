@@ -1,0 +1,25 @@
+﻿@using MudBlazor
+@using Quick.Fields
+@using global::MudBlazor
+
+<MudButtonGroup Variant="ControlUtils.GetVariant(Field)" Color="ControlUtils.GetColor(Field)"
+                Size="ControlUtils.GetSize(Field)" Class="@ControlUtils.GetCommonClass(Field)">
+    @if (Field.Children != null)
+    {
+        @foreach (var child in Field.Children)
+        {
+            <Control Field="@child" />
+        }
+    }
+</MudButtonGroup>
+
+@code
+{
+    [Parameter]
+    public FieldForGet Field { get; set; }
+
+    public void OnClick()
+    {
+        Field.Value = Field.Value;
+    }
+}

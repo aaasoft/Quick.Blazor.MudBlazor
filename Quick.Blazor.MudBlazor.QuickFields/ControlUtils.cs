@@ -6,6 +6,47 @@ namespace Quick.Blazor.MudBlazor.QuickFields;
 
 internal static class ControlUtils
 {
+    
+    public static Variant GetVariant(FieldForGet field)
+    {
+        if (field.InputButton_IsOutline.HasValue && field.InputButton_IsOutline.Value)
+            return Variant.Outlined;
+        return Variant.Filled;
+    }
+    public static Size GetSize(FieldForGet field)
+    {
+        if(field.Input_IsSmall.HasValue && field.Input_IsSmall.Value)
+            return Size.Small;
+        if(field.Input_IsLarge.HasValue && field.Input_IsLarge.Value)
+            return Size.Large;
+        return Size.Medium;
+    }
+    public static Color GetColor(FieldForGet field)
+    {
+        switch (field.Theme)
+        {
+            case FieldTheme.Primary:
+                return Color.Primary;
+            case FieldTheme.Secondary:
+                return Color.Secondary;
+            case FieldTheme.Success:
+                return Color.Success;
+            case FieldTheme.Danger:
+                return Color.Error;
+            case FieldTheme.Warning:
+                return Color.Warning;
+            case FieldTheme.Info:
+                return Color.Info;
+            case FieldTheme.Dark:
+                return Color.Dark;
+            case FieldTheme.Light:
+                return Color.Default;
+            default:
+                return Color.Default;
+        }
+    }
+
+
     private static void appendCommonClass(StringBuilder sb, FieldForGet field)
     {
         if (field.Margin.HasValue)

@@ -1,0 +1,18 @@
+﻿@using MudBlazor
+@using Quick.Fields
+
+<MudPaper Class="@ControlUtils.GetCommonClass(Field)"">
+    @if (Field.Children != null)
+    {
+        @foreach (var field in Field.Children)
+        {
+            <Control Field="field" />
+        }
+    }
+</MudPaper>
+
+@code
+{
+    [Parameter]
+    public FieldForGet Field { get; set; }
+}

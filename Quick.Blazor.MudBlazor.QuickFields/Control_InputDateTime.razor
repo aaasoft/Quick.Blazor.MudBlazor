@@ -1,0 +1,28 @@
+﻿@using Microsoft.AspNetCore.Components.Forms
+@using MudBlazor
+@using Quick.Fields
+
+<InputBase Field="@Field">
+    <MudDatePicker @bind-Date="Field.Value" ReadOnly="ControlUtils.GetInputReadOnly(field)"
+                   HelperText="@Field.Description" Variant="ControlUtils.GetVariant(Field)"
+                   Required="@(Field.Input_AllowBlank==null?false:Field.Input_AllowBlank.Value)"></MudDatePicker>
+</InputBase>
+
+@code
+{
+    [Parameter]
+    public FieldForGet Field { get; set; }
+    private InputDateType input_type
+    {
+        get
+        {
+            if (Field.InputDateTime_IncludeDate.HasValue && Field.InputDateTime_IncludeDate.Value
+            && (Field.InputDateTime_IncludeTime == null || !Field.InputDateTime_IncludeTime.Value))
+                return InputDateType.Time;
+            if (Field.InputDateTime_IncludeTime.HasValue && Field.InputDateTime_IncludeTime.Value &&
+            (Field.InputDateTime_IncludeDate == null || !Field.InputDateTime_IncludeDate.Value))
+                return InputDateType.Date;
+            return InputDateType.DateTimeLocal;
+        }
+    }
+}

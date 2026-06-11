@@ -4,9 +4,9 @@
 
 <InputBase Field="@Field">
     <MudTextField @bind-Value="Field.Value" Label="@Field.Name" HelperText="@Field.Description"
-        ReadOnly="@ControlUtils.GetInputReadOnly(Field)"
-        Variant="Variant.Outlined"
-        Required="@(Field.Input_AllowBlank==null?false:Field.Input_AllowBlank.Value)" />
+                  ReadOnly="@ControlUtils.GetInputReadOnly(Field)" AdornmentColor="ControlUtils.GetColor(Field)"
+                  Variant="ControlUtils.GetVariant(Field)"
+                  Required="@(Field.Input_AllowBlank==null?false:Field.Input_AllowBlank.Value)" />
 </InputBase>
 
 @code
