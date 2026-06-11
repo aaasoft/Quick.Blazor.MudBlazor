@@ -12,7 +12,8 @@ public partial class Controls : ComponentBase
     public IDialogService DialogService { get; set; }
 
     public FieldForGet[] Fields { get; private set; }
-
+    [Parameter]
+    public bool Visiable { get; set; } = true;
     [Parameter]
     public Action<FieldForGet, FieldForGet[]> OnFieldChangedAction { get; set; }
 

@@ -1,7 +1,10 @@
-﻿@if(Fields!=null)
+﻿@if (Visiable)
 {
-    @foreach (var field in Fields)
+    @if (Fields != null)
     {
-        <Control Field="field"></Control>
+        @foreach (var field in Fields)
+        {
+            <Control Field="field"></Control>
+        }
     }
 }
