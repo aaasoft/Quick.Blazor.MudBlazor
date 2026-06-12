@@ -50,7 +50,7 @@ internal static class ControlUtils
     private static void appendCommonClass(StringBuilder sb, FieldForGet field)
     {
         if (field.Margin.HasValue)
-            sb.Append(" m-" + field.Margin.Value);
+            sb.Append(" ma-" + field.Margin.Value);
         if (field.MarginLeft.HasValue)
             sb.Append(" ml-" + field.MarginLeft.Value);
         if (field.MarginTop.HasValue)
@@ -61,7 +61,7 @@ internal static class ControlUtils
             sb.Append(" mb-" + field.MarginBottom.Value);
 
         if (field.Padding.HasValue)
-            sb.Append(" p-" + field.Padding.Value);
+            sb.Append(" pa-" + field.Padding.Value);
         if (field.PaddingLeft.HasValue)
             sb.Append(" pl-" + field.PaddingLeft.Value);
         if (field.PaddingTop.HasValue)

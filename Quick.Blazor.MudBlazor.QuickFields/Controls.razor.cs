@@ -34,15 +34,26 @@ public partial class Controls : ComponentBase
                     Action okAction = null;
                     Action cancelAction = null;
                     var usePreTag = field.MessageBox_UsePreTag.HasValue && field.MessageBox_UsePreTag.Value;
+
+                    string yesText = "确定";
+                    string cancelText = null;
                     if (field.PostOnChanged.HasValue && field.PostOnChanged.Value)
                     {
                         var canCancel = field.MessageBox_CanCancel.HasValue && field.MessageBox_CanCancel.Value;
                         okAction = () => field.Value = FieldForGet.MESSAGEBOX_VALUE_OK;
                         if (canCancel)
+                        {
                             cancelAction = () => field.Value = FieldForGet.MESSAGEBOX_VALUE_CANCEL;
+                            cancelText = "取消";
+                        }
                     }
-                    DialogService.ShowMessageBoxAsync(field.Name, field.Description)
-                        .ContinueWith(t =>
+                    DialogService.ShowMessageBoxAsync(new MessageBoxOptions()
+                    {
+                        Title = field.Name,
+                        Message = field.Description,
+                        YesText = yesText,
+                        CancelText = cancelText
+                    }).ContinueWith(t =>
                         {
                             if (t.IsCanceled)
                                 return;
