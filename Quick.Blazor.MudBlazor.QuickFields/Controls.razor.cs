@@ -47,7 +47,7 @@ public partial class Controls : ComponentBase
                             cancelText = "取消";
                         }
                     }
-                    DialogService.ShowMessageBox(new MessageBoxOptions()
+                    DialogService.ShowMessageBoxAsync(new MessageBoxOptions()
                     {
                         Title = field.Name,
                         Message = field.Description,
