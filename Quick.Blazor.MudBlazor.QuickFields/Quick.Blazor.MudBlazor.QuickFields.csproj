@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <PackageReference Include="Quick.Fields" Version="2026.4.609" />
-		<PackageReference Include="MudBlazor" Version="9.5.0" />
+		<PackageReference Include="MudBlazor" Version="8.15.0" />
   </ItemGroup>
 
 </Project>
