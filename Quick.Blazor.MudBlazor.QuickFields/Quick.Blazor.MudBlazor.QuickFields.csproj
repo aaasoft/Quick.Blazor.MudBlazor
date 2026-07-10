@@ -4,7 +4,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <RepositoryUrl>https://github.com/aaasoft/Quick.Blazor.MudBlazor</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/aaasoft/Quick.Blazor.MudBlazor</PackageProjectUrl>
-		<Version>2026.6.710</Version>
+		<Version>2026.7.710</Version>
 		<Description>Quick.Blazor.MudBlazor.QuickFields is a component library for Quick.Fields built on top of Blazor and MudBlazor.</Description>
   </PropertyGroup>
   
