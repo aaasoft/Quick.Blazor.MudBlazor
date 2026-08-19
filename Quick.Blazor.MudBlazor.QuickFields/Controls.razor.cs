@@ -11,13 +11,13 @@ public partial class Controls : ComponentBase
     [Inject]
     public IDialogService DialogService { get; set; }
 
-    public FieldForGet[] Fields { get; private set; }
+    public List<FieldForGet> Fields { get; private set; }
     [Parameter]
     public bool Visiable { get; set; } = true;
     [Parameter]
-    public Action<FieldForGet, FieldForGet[]> OnFieldChangedAction { get; set; }
+    public Action<FieldForGet, List<FieldForGet>> OnFieldChangedAction { get; set; }
 
-    public void SetFields(FieldForGet[] fields)
+    public void SetFields(List<FieldForGet> fields)
     {
         travelFields(fields, field =>
         {
@@ -94,7 +94,7 @@ public partial class Controls : ComponentBase
                     field.PropertyChanged -= OnFieldValueChanged;
     }
 
-    private void travelFields(FieldForGet[] fields, Action<FieldForGet> action)
+    private void travelFields(IEnumerable<FieldForGet> fields, Action<FieldForGet> action)
     {
         if (fields == null)
             return;
