@@ -1,0 +1,19 @@
+﻿@using Quick.Fields
+
+<div class="table-responsive">
+    <table class="mud-table-root @ControlUtils.GetTableClass(Field)" style="@Field.Html_Style">
+        @if (Field.Children != null)
+        {
+            @foreach (var child in Field.Children)
+            {
+                <Control Field="@child" />
+            }
+        }
+    </table>
+</div>
+
+@code
+{
+    [Parameter]
+    public FieldForGet Field { get; set; }
+}

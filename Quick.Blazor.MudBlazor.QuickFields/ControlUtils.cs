@@ -114,4 +114,46 @@ internal static class ControlUtils
                 return Severity.Normal;
         }
     }
+    
+    public static string GetTableClass(FieldForGet field)
+    {
+        if (!string.IsNullOrEmpty(field.Html_Class))
+            return field.Html_Class;
+        var sb = new StringBuilder();
+        sb.Append("table");
+        if (field.Theme.HasValue)
+        {
+            sb.Append(" table-");
+            sb.Append(field.Theme.Value.ToString().ToLower());
+        }
+        if (field.Input_IsSmall.HasValue && field.Input_IsSmall.Value)
+            sb.Append(" table-sm");
+        if (field.Input_IsLarge.HasValue && field.Input_IsLarge.Value)
+            sb.Append(" table-lg");
+        if (field.ContainerTable_Striped.HasValue && field.ContainerTable_Striped.Value)
+            sb.Append(" table-striped");
+        if (field.ContainerTable_Bordered.HasValue)
+            if (field.ContainerTable_Bordered.Value)
+                sb.Append(" table-bordered");
+            else
+                sb.Append(" table-borderless");
+        if (field.ContainerTable_Hoverable.HasValue && field.ContainerTable_Hoverable.Value)
+            sb.Append(" table-hover");
+        appendCommonClass(sb, field);
+        return sb.ToString();
+    }
+
+    public static string GetTableHeadClass(FieldForGet field)
+    {
+        if (!string.IsNullOrEmpty(field.Html_Class))
+            return field.Html_Class;
+        var sb = new StringBuilder();
+        if (field.Theme.HasValue)
+        {
+            sb.Append("thead-");
+            sb.Append(field.Theme.Value.ToString().ToLower());
+        }
+        appendCommonClass(sb, field);
+        return sb.ToString();
+    }
 }

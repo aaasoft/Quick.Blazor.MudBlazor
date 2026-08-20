@@ -1,0 +1,17 @@
+﻿@using Quick.Fields
+
+<tbody class="mud-table-body @Field.Html_Class" style="@Field.Html_Style">
+    @if (Field.Children != null)
+    {
+        @foreach (var child in Field.Children)
+        {
+            <Control Field="@child" />
+        }
+    }
+</tbody>
+
+@code
+{
+    [Parameter]
+    public FieldForGet Field { get; set; }
+}
