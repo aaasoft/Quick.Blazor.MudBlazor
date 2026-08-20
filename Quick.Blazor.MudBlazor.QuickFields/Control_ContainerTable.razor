@@ -1,15 +1,17 @@
 ﻿@using Quick.Fields
 
-<div class="table-responsive">
-    <table class="mud-table-root @ControlUtils.GetTableClass(Field)" style="@Field.Html_Style">
-        @if (Field.Children != null)
-        {
-            @foreach (var child in Field.Children)
+<div class="@ControlUtils.GetTableClass(Field)">
+    <div class="mud-table-container">
+        <table class="mud-table-root" style="@Field.Html_Style">
+            @if (Field.Children != null)
             {
-                <Control Field="@child" />
+                @foreach (var child in Field.Children)
+                {
+                    <Control Field="@child" />
+                }
             }
-        }
-    </table>
+        </table>
+    </div>
 </div>
 
 @code

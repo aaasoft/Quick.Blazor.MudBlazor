@@ -120,25 +120,25 @@ internal static class ControlUtils
         if (!string.IsNullOrEmpty(field.Html_Class))
             return field.Html_Class;
         var sb = new StringBuilder();
-        sb.Append("table");
+        sb.Append("mud-table");
         if (field.Theme.HasValue)
         {
-            sb.Append(" table-");
+            sb.Append(" mud-table-");
             sb.Append(field.Theme.Value.ToString().ToLower());
         }
         if (field.Input_IsSmall.HasValue && field.Input_IsSmall.Value)
-            sb.Append(" table-sm");
+            sb.Append(" mud-table-sm");
         if (field.Input_IsLarge.HasValue && field.Input_IsLarge.Value)
-            sb.Append(" table-lg");
+            sb.Append(" mud-table-lg");
         if (field.ContainerTable_Striped.HasValue && field.ContainerTable_Striped.Value)
-            sb.Append(" table-striped");
+            sb.Append(" mud-table-striped");
         if (field.ContainerTable_Bordered.HasValue)
             if (field.ContainerTable_Bordered.Value)
-                sb.Append(" table-bordered");
+                sb.Append(" mud-table-bordered");
             else
-                sb.Append(" table-borderless");
+                sb.Append(" mud-table-borderless");
         if (field.ContainerTable_Hoverable.HasValue && field.ContainerTable_Hoverable.Value)
-            sb.Append(" table-hover");
+            sb.Append(" mud-table-hover");
         appendCommonClass(sb, field);
         return sb.ToString();
     }
