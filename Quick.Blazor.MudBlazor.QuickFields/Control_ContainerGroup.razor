@@ -2,7 +2,7 @@
 @using Quick.Fields
 @using global::MudBlazor
 
-<MudCard>
+<MudCard Class="@ControlUtils.GetCommonClass(Field)">
     @if (!string.IsNullOrEmpty(Field.Name))
     {
         <MudCardHeader>
